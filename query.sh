@@ -4,5 +4,9 @@
 # along  with appropriate stemming of the input strings and stripping of the 
 # index metadata
 
-echo "$@" | cat
+# echo "$@" | cat
 
+term=$1
+
+grep "$term" d/global-index.txt | tee query_output.txt
+# sort

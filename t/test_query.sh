@@ -11,7 +11,7 @@ term="stuff"
 
 cat "$T_FOLDER"/d/d7.txt > d/global-index.txt
 
-if $DIFF <(./query.sh "$term") <(cat "$T_FOLDER"/d/d8.txt) > /dev/null;
+if $DIFF <(./query.sh "$term") <(cat "$T_FOLDER"/d/d8.txt);
 then
     echo "$0 success: search results are identical"
 else
