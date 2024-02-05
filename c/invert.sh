@@ -2,34 +2,26 @@
 # Invert index to create a mapping from terms to URLs containing that term
 # The details of the index structure can be seen in the test cases
 
-url="https://cs.brown.edu/courses/csci1380/sandbox/1/level_1a/index.html"
 
-# Process the input from stdin
-awk -v url="$url" '
-{
-    # For each line, generate unique terms and combinations
-    delete terms;
-    for (i = 1; i <= NF; i++) {
-        for (j = i; j <= NF; j++) {
-            term = "";
-            for (k = i; k <= j; k++) {
-                term = term (k == i ? "" : " ") $k;
-            }
-            terms[term]++;
-        }
-    }
-    
-    # Add the counts to the global associative array
-    for (term in terms) {
-        counts[term]++;
-    }
+#!/bin/bash
+
+url="$1"
+
+# Check if an URL was provided
+if [ -z "$url" ]; then
+    echo "Usage: $0 <url>"
+    exit 1
+fi
+
+# Read from standard input, sort the n-grams, count unique occurrences, and format the output
+awk -v url="$url" '{
+    # Remove leading and trailing spaces and count n-grams
+    gsub(/^ +| +$/, "");
+    count[$0]++;
 }
-
 END {
-    # Print the results
-    for (term in counts) {
-        print term " | " counts[term] " | " url;
+    # Output the counted n-grams in the expected format
+    for (ngram in count) {
+        print ngram " | " count[ngram] " | " url;
     }
-}
-' | sort
-
+}' | sort | tee invert_output.txt
