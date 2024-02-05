@@ -6,8 +6,8 @@
 tee tr_output.txt |
 awk '{
     print $1;
-    if(NR>1) printf "%s %s\n", last, $1;
-    if(NR>2) printf "%s %s %s\n", lastlast, last, $1;
+    if(NR>1) printf "%s\t%s\n", last, $1;
+    if(NR>2) printf "%s\t%s\t%s\n", lastlast, last, $1;
     lastlast = last;
     last = $1;
 }' | tee awk_output.txt |
