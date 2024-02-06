@@ -10,6 +10,7 @@ awk '{
     if(NR>2) printf "%s\t%s\t%s\n", lastlast, last, $1;
     lastlast = last;
     last = $1;
-}' | tee awk_output.txt |
+}' | 
+# tee awk_output.txt |
 sort -d 
 # | tee combine_output.txt
