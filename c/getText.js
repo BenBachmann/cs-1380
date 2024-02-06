@@ -20,8 +20,6 @@ rl.on('line', (line) => {
 
 rl.on('close', () => {
   // TODO Add some code
-  const text = convert(htmlContent, {
-    wordwrap: 130
-  }); // Convert the buffered HTML content to text
+  const text = convert(htmlContent);
   console.log(text);
 });

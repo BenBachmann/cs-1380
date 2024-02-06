@@ -3,7 +3,7 @@
 # Combine terms to create  n-grams (for n=1,2,3) and then count and sort them
 
 # tr -s '[:space:]' '\n' |
-tee tr_output.txt |
+# tee tr_output.txt |
 awk '{
     print $1;
     if(NR>1) printf "%s\t%s\n", last, $1;
@@ -11,8 +11,5 @@ awk '{
     lastlast = last;
     last = $1;
 }' | tee awk_output.txt |
-sort -dn |
-# sed 's/\t*$//' | sed 's/\s/ /g' |
-# sed 's/ /   /g' |
-# sed 's/[[:space:]]*$//' |
-tee combine_output.txt
+sort -d 
+# | tee combine_output.txt

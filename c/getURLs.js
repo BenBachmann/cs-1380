@@ -27,6 +27,10 @@ if (base.pathname.includes('/')) {
   }
 }
 
+if (!base.pathname.endsWith('/')) {
+  base.pathname += '/';
+}
+
 // console.log("base: " + base);
 
 // TODO some code

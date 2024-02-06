@@ -24,4 +24,5 @@ END {
     }
 }' | awk -F ' \\| ' '{print $1 "|" $2 "|" $3}' "$filename" | 
 sort -t '|' -k1,1 |
-awk -F '|' '{print $1 " | " $2 " | " $3}' | tee invert_output.txt
+awk -F '|' '{print $1 " | " $2 " | " $3}' 
+# | tee invert_output.txt

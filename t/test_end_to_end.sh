@@ -15,14 +15,14 @@ cat "$T_FOLDER"/d/u.txt > d/urls.txt
 
 ./engine.sh
 
-if $DIFF <(sort d/visited.txt) <(sort "$T_FOLDER"/d/v.txt) > /dev/null;
+if $DIFF <(sort d/visited.txt) <(sort "$T_FOLDER"/d/v.txt);
 then
     echo "$0 success: visited urls are identical"
 else
     echo "$0 failure: visited urls are not identical"
 fi
 
-if DIFF_PERCENT=$DIFF_PERCENT t/gi-diff.js <(sort d/global-index.txt) <(sort "$T_FOLDER"/d/i.txt) > /dev/null;
+if DIFF_PERCENT=$DIFF_PERCENT t/gi-diff.js <(sort d/global-index.txt) <(sort "$T_FOLDER"/d/i.txt);
 then
     echo "$0 success: global-index is identical"
 else
